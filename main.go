@@ -1,12 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-
-func multiply(a,b int) int {
-	return a * b
-}
+	"github.com/ohbyeongmin/learngo/accounts"
+)
 
 func main(){
-	fmt.Println(multiply(2,2))
+	account := accounts.NewAccount("obm")
+	account.Deposit(10)
+	
+	fmt.Println(account)
 }
