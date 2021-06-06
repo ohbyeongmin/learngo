@@ -6,33 +6,33 @@ import (
 )
 
 // Account struct
-type Account struct {
+type account struct {
 	owner string
 	balance int
 }
 
 var errNoMoney = errors.New("ERROR : Can't withdraw")
 
-// NewAccount creates Account
-func NewAccount(owner string) *Account{
-	account := Account{owner: owner, balance: 0}
+// NewAccount creates account
+func NewAccount(owner string) *account{
+	account := account{owner: owner, balance: 0}
 	return &account
 }
 
 
 // receiver
 // Deposit x account on your account
-func (a *Account) Deposit(amount int) {
+func (a *account) Deposit(amount int) {
 	a.balance += amount
 }
 
 // Balance of your account
-func (a Account) Balance() int {
+func (a account) Balance() int {
 	return a.balance
 }
 
 // Withdraw x account from your account
-func (a *Account) Withdraw(amount int) error {
+func (a *account) Withdraw(amount int) error {
 	if a.balance < amount {
 		return errNoMoney
 	}
@@ -41,16 +41,18 @@ func (a *Account) Withdraw(amount int) error {
 }
 
 // ChangeOwner x account from your account
-func (a *Account) ChangeOwner(newOwner string) {
+func (a *account) ChangeOwner(newOwner string) {
 	a.owner = newOwner
 }
 
 
 // Owner of the account
-func (a Account) Owner() string {
+func (a account) Owner() string {
 	return a.owner
 }
 
-func (a Account) String() string{
+// 내부적으로 호출 됨
+// account print
+func (a account) String() string{
 	return fmt.Sprint(a.Owner(), "'s account.\nHas: ", a.Balance())
 }
